@@ -78,3 +78,4 @@ fabric.properties
 
 mainServer.db
 vcs.xml
+compiler.xml
