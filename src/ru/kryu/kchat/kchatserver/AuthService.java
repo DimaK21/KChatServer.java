@@ -4,13 +4,11 @@ import java.sql.*;
 
 public class AuthService {
     private Connection connection;
-    private Statement statement;
     private PreparedStatement psGetNick;
 
     public void connect() throws ClassNotFoundException, SQLException {
         Class.forName("org.sqlite.JDBC");
         connection = DriverManager.getConnection("jdbc:sqlite:mainServer.db");
-        statement = connection.createStatement();
         psGetNick = connection.prepareStatement("SELECT nick FROM users WHERE login = ? AND pass = ?;");
     }
 
@@ -29,7 +27,7 @@ public class AuthService {
     }
 
     public void disconnect() throws SQLException {
-        statement.close();
+        psGetNick.close();
         connection.close();
     }
 
